@@ -1,5 +1,5 @@
 public class Dispositivo {
-    private int ID;
+    private final int ID;
     private String nombre;
     private boolean estado;
     private static int cont;
@@ -10,6 +10,7 @@ public class Dispositivo {
         if (ID > 0 && nombre != null && !nombre.trim().isEmpty()) {
             this.ID = ID;
             this.nombre = nombre;
+            estado = true;
             cont++;
         } else {
             throw new IllegalArgumentException("Datos de dispositivo no validos");
@@ -32,14 +33,17 @@ public class Dispositivo {
         this.nombre = nombre;
   }
 
-    public String desactivar (){
-        if(estado == true){
+    public String desactivar () {
+        if (estado) {
 
-         this.estado = true;
+            estado = false;
+            return "Desactivado correctamente";
 
-        }else{
-            return ("false");
+        } else {
+            return "Error: Ya estaba desactivado";
+
         }
+
     }
 }
 
